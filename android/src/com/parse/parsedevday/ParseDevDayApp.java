@@ -1,5 +1,6 @@
 package com.parse.parsedevday;
 
+import com.ibeacons.LifecycleHandler;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.PushService;
@@ -18,6 +19,7 @@ import android.app.Application;
  */
 public class ParseDevDayApp extends Application {
   public void onCreate() {
+    registerActivityLifecycleCallbacks(new LifecycleHandler());
     // Register subclasses for various kinds of Parse Objects.
     ParseObject.registerSubclass(Room.class);
     ParseObject.registerSubclass(Slot.class);
@@ -25,8 +27,8 @@ public class ParseDevDayApp extends Application {
     ParseObject.registerSubclass(Talk.class);
 
     // Initialize Parse with the application ID and client key.
-    Parse.initialize(this, "NN83LGZybDxGCxmGyA2b063eaYrLvCb2UUlJV7WB",
-        "sOgFGHbUYc2CoQ50aLYJ9ayA79ExSPT6553tVA3h");
+    Parse.initialize(this, "hSOvtKymudukuSdrlkqzKMcCna9JNgNUpQegnJBL",
+        "I9pvaNaxCAMRMMTpSkM7MXd5WRLibZY5HokHmvUL");
 
     // Enable the Parse push notification service for remote pushes.
     PushService.setDefaultPushCallback(this, MainActivity.class);

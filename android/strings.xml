@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Parse Dev Day_ibeacons</string>
+    <string name="app_name">PDD_iBeacons</string>
     <string name="title_schedule">Schedule</string>
     <string name="title_talks">Talks</string>
     <string name="title_favorites">Favorites</string>
