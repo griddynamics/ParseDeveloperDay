@@ -8,5 +8,4 @@
 #import "PDDBaseListViewController.h"
 
 @interface PDDListViewController : PDDBaseListViewController
-
 @end

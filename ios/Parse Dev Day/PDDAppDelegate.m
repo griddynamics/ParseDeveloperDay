@@ -9,6 +9,8 @@
 
 #import "PDDScheduleViewController.h"
 #import "PDDListViewController.h"
+#import "IbeaconListViewController.h"
+
 #import "PDDSplashViewController.h"
 
 #import "PDDTalk.h"
@@ -43,14 +45,17 @@
     // Override point for customization after application launch.
     UIViewController *listViewController = [[PDDListViewController alloc] init];
     UIViewController *favViewController = [[PDDScheduleViewController alloc] init];
+    UIViewController *beacViewController = [[IbeaconListViewController alloc] init];
 
     UINavigationController *listNavViewController = [[UINavigationController alloc] initWithRootViewController:listViewController];
     listNavViewController.navigationBarHidden = YES;
     UINavigationController *favNavViewController = [[UINavigationController alloc] initWithRootViewController:favViewController];
     favNavViewController.navigationBarHidden = YES;
+    UINavigationController *beacNavViewController = [[UINavigationController alloc] initWithRootViewController:beacViewController];
+    beacNavViewController.navigationBarHidden = YES;
 
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[ listNavViewController, favNavViewController ];
+    self.tabBarController.viewControllers = @[ listNavViewController, favNavViewController, beacNavViewController ];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
