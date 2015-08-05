@@ -635,19 +635,21 @@
 		97C5F59117A343AE0071C5EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/cyen/src/ParseDevDayPrivate/ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "arm64 armv7 armv7s armv8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -655,20 +657,22 @@
 		97C5F59217A343AE0071C5EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/cyen/src/ParseDevDayPrivate/ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91C8B455-8164-4102-A367-79CC2C9FBF1C";
+				VALID_ARCHS = "arm64 armv7 armv7s armv8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -704,20 +708,22 @@
 		E7B2AD9517CEFDFE0007605B /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parse Inc (289LFBE5L8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					/Users/cyen/src/ParseDevDayPrivate/ios,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "87206BFA-1C69-4181-968A-ED84F46DC514";
+				VALID_ARCHS = "arm64 armv7 armv7s armv8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
