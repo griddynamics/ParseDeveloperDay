@@ -83,6 +83,7 @@
 		97CE45AD17C434FD00F1F128 /* AppiPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 97CE45AC17C434FD00F1F128 /* AppiPhone.png */; };
 		97F9D6E817AC49AF00C6B9C6 /* PDDSpeakerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F9D6E717AC49AF00C6B9C6 /* PDDSpeakerButton.m */; };
 		97F9D6EC17AC653A00C6B9C6 /* UIColor+ParseDevDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F9D6EB17AC653A00C6B9C6 /* UIColor+ParseDevDay.m */; };
+		D324CE441B72721800FFD985 /* IbeaconListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CE431B72721800FFD985 /* IbeaconListViewController.m */; };
 		E786C00A17C3DD0A0059950B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E786C00917C3DD0A0059950B /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,8 @@
 		97F9D6E717AC49AF00C6B9C6 /* PDDSpeakerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDDSpeakerButton.m; sourceTree = "<group>"; };
 		97F9D6EA17AC653A00C6B9C6 /* UIColor+ParseDevDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ParseDevDay.h"; sourceTree = "<group>"; };
 		97F9D6EB17AC653A00C6B9C6 /* UIColor+ParseDevDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ParseDevDay.m"; sourceTree = "<group>"; };
+		D324CE421B72721800FFD985 /* IbeaconListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IbeaconListViewController.h; path = Ibeacon/IbeaconListViewController.h; sourceTree = "<group>"; };
+		D324CE431B72721800FFD985 /* IbeaconListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IbeaconListViewController.m; path = Ibeacon/IbeaconListViewController.m; sourceTree = "<group>"; };
 		E786C00917C3DD0A0059950B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -311,6 +314,7 @@
 		97C5F56817A343AE0071C5EC /* Parse Dev Day */ = {
 			isa = PBXGroup;
 			children = (
+				D324CE411B7271F600FFD985 /* Ibeacon */,
 				97F9D6E917AC652200C6B9C6 /* Categories */,
 				97C5F57117A343AE0071C5EC /* PDDAppDelegate.h */,
 				97C5F57217A343AE0071C5EC /* PDDAppDelegate.m */,
@@ -423,6 +427,15 @@
 				97CA1C2B17C2C69F000F4D10 /* UIView+ParseDevDay.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		D324CE411B7271F600FFD985 /* Ibeacon */ = {
+			isa = PBXGroup;
+			children = (
+				D324CE421B72721800FFD985 /* IbeaconListViewController.h */,
+				D324CE431B72721800FFD985 /* IbeaconListViewController.m */,
+			);
+			name = Ibeacon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -550,6 +563,7 @@
 				975C726D17AADD1E0004F0CC /* PDDSpeakerViewController.m in Sources */,
 				975C727017AADD280004F0CC /* PDDSpeakerView.m in Sources */,
 				97717EE517AAE9C6005BB328 /* PDDScheduleView.m in Sources */,
+				D324CE441B72721800FFD985 /* IbeaconListViewController.m in Sources */,
 				970E909C17AB01D600E7E897 /* PDDBaseListViewController.m in Sources */,
 				9735833117BDAC3C0001DBF9 /* PDDSplashView.m in Sources */,
 				970E90A017AB068100E7E897 /* PDDFavoriteButton.m in Sources */,
