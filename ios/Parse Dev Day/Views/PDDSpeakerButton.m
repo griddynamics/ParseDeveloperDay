@@ -74,8 +74,8 @@
                                                                        views:NSDictionaryOfVariableBindings(nameLabel, companyLabel, twitterLabel)]];
 
         // Fill in data
-        self.photoView.file = speaker.photo;
-        [self.photoView loadInBackground];
+   //     self.photoView.file = speaker.photo;
+   //     [self.photoView loadInBackground];
         self.nameLabel.text = speaker.name;
         self.companyLabel.text = [NSString stringWithFormat:@"%@ @ %@", speaker.title, speaker.company];
         self.twitterLabel.hidden = !speaker.twitter;

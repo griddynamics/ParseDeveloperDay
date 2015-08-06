@@ -65,7 +65,6 @@
 		97C5F57917A343AE0071C5EC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C5F57817A343AE0071C5EC /* Default-568h@2x.png */; };
 		97C5F57C17A343AE0071C5EC /* PDDScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F57B17A343AE0071C5EC /* PDDScheduleViewController.m */; };
 		97C5F58317A343AE0071C5EC /* PDDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F58217A343AE0071C5EC /* PDDListViewController.m */; };
-		97C5F59417A344100071C5EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C5F59317A344100071C5EC /* Parse.framework */; };
 		97C5F59A17A345BA0071C5EC /* PDDTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59917A345BA0071C5EC /* PDDTalk.m */; };
 		97C5F59D17A346190071C5EC /* PDDSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59C17A346180071C5EC /* PDDSpeaker.m */; };
 		97C5F5A017A3467E0071C5EC /* PDDRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59F17A3467E0071C5EC /* PDDRoom.m */; };
@@ -87,8 +86,17 @@
 		D324CF791B7377E000FFD985 /* libBean iOS Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF711B7377E000FFD985 /* libBean iOS Library.a */; };
 		D324CF7C1B73783700FFD985 /* ibeacons.png in Resources */ = {isa = PBXBuildFile; fileRef = D324CF7A1B73783700FFD985 /* ibeacons.png */; };
 		D324CF7D1B73783700FFD985 /* ibeacons@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D324CF7B1B73783700FFD985 /* ibeacons@2x.png */; };
-		D324CF7F1B7378A700FFD985 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF7E1B7378A700FFD985 /* ParseFacebookUtilsV4.framework */; };
-		D324CF8B1B737A9A00FFD985 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF8A1B737A9A00FFD985 /* libz.1.2.5.dylib */; };
+		D324CF8C1B738CA100FFD985 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C5F59317A344100071C5EC /* Parse.framework */; };
+		D324CF911B738CA300FFD985 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */; };
+		D324CF941B738CA300FFD985 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF901B738CA300FFD985 /* ParseUI.framework */; };
+		D324CF961B738DA200FFD985 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF951B738DA200FFD985 /* libstdc++.6.dylib */; };
+		D324CF981B738DB900FFD985 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF971B738DB900FFD985 /* libsqlite3.dylib */; };
+		D324CF9A1B738DC300FFD985 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF991B738DC300FFD985 /* Accounts.framework */; };
+		D324CF9C1B738DCA00FFD985 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF9B1B738DCA00FFD985 /* Social.framework */; };
+		D324CF9E1B73907600FFD985 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF9D1B73907600FFD985 /* Bolts.framework */; };
+		D324CFA61B739EBD00FFD985 /* PTDBeanDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */; };
+		D324CFA71B739EBD00FFD985 /* PTDBeanHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */; };
+		D324CFA81B739EBD00FFD985 /* PTDBeanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */; };
 		E786C00A17C3DD0A0059950B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E786C00917C3DD0A0059950B /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -210,8 +218,19 @@
 		D324CF751B7377E000FFD985 /* PTDBleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBleDevice.h; sourceTree = "<group>"; };
 		D324CF7A1B73783700FFD985 /* ibeacons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ibeacons.png; sourceTree = "<group>"; };
 		D324CF7B1B73783700FFD985 /* ibeacons@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ibeacons@2x.png"; sourceTree = "<group>"; };
-		D324CF7E1B7378A700FFD985 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../../Downloads/parse-starter-project-1.7.5/ParseStarterProject/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
-		D324CF8A1B737A9A00FFD985 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		D324CF901B738CA300FFD985 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		D324CF951B738DA200FFD985 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		D324CF971B738DB900FFD985 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D324CF991B738DC300FFD985 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D324CF9B1B738DCA00FFD985 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D324CF9D1B73907600FFD985 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		D324CFA01B739EBD00FFD985 /* PTDBeanDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanDetailController.h; sourceTree = "<group>"; };
+		D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanDetailController.m; sourceTree = "<group>"; };
+		D324CFA21B739EBD00FFD985 /* PTDBeanHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanHeaderCell.h; sourceTree = "<group>"; };
+		D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanHeaderCell.m; sourceTree = "<group>"; };
+		D324CFA41B739EBD00FFD985 /* PTDBeanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanListViewController.h; sourceTree = "<group>"; };
+		D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanListViewController.m; sourceTree = "<group>"; };
 		E786C00917C3DD0A0059950B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -220,22 +239,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D324CF8B1B737A9A00FFD985 /* libz.1.2.5.dylib in Frameworks */,
-				D324CF7F1B7378A700FFD985 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				D324CF791B7377E000FFD985 /* libBean iOS Library.a in Frameworks */,
+				D324CF9E1B73907600FFD985 /* Bolts.framework in Frameworks */,
+				D324CF8C1B738CA100FFD985 /* Parse.framework in Frameworks */,
+				D324CF911B738CA300FFD985 /* ParseCrashReporting.framework in Frameworks */,
+				D324CF941B738CA300FFD985 /* ParseUI.framework in Frameworks */,
+				D324CF9C1B738DCA00FFD985 /* Social.framework in Frameworks */,
+				D324CF9A1B738DC300FFD985 /* Accounts.framework in Frameworks */,
+				D324CF981B738DB900FFD985 /* libsqlite3.dylib in Frameworks */,
 				E786C00A17C3DD0A0059950B /* libz.dylib in Frameworks */,
-				975C724F17A99E980004F0CC /* AudioToolbox.framework in Frameworks */,
-				975C725017A99E980004F0CC /* CFNetwork.framework in Frameworks */,
-				975C725117A99E980004F0CC /* CoreLocation.framework in Frameworks */,
-				975C725317A99E980004F0CC /* MobileCoreServices.framework in Frameworks */,
-				975C725417A99E980004F0CC /* QuartzCore.framework in Frameworks */,
-				975C725517A99E980004F0CC /* Security.framework in Frameworks */,
-				975C725617A99E980004F0CC /* StoreKit.framework in Frameworks */,
+				D324CF961B738DA200FFD985 /* libstdc++.6.dylib in Frameworks */,
 				975C725717A99E980004F0CC /* SystemConfiguration.framework in Frameworks */,
+				975C725617A99E980004F0CC /* StoreKit.framework in Frameworks */,
+				975C725517A99E980004F0CC /* Security.framework in Frameworks */,
+				975C725417A99E980004F0CC /* QuartzCore.framework in Frameworks */,
+				975C725117A99E980004F0CC /* CoreLocation.framework in Frameworks */,
 				97C5F56717A343AE0071C5EC /* CoreGraphics.framework in Frameworks */,
+				975C725017A99E980004F0CC /* CFNetwork.framework in Frameworks */,
+				975C724F17A99E980004F0CC /* AudioToolbox.framework in Frameworks */,
+				D324CF791B7377E000FFD985 /* libBean iOS Library.a in Frameworks */,
+				975C725317A99E980004F0CC /* MobileCoreServices.framework in Frameworks */,
 				97C5F56317A343AE0071C5EC /* UIKit.framework in Frameworks */,
 				97C5F56517A343AE0071C5EC /* Foundation.framework in Frameworks */,
-				97C5F59417A344100071C5EC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +334,13 @@
 		97C5F56117A343AE0071C5EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D324CF8A1B737A9A00FFD985 /* libz.1.2.5.dylib */,
-				D324CF7E1B7378A700FFD985 /* ParseFacebookUtilsV4.framework */,
+				D324CF9D1B73907600FFD985 /* Bolts.framework */,
+				D324CF9B1B738DCA00FFD985 /* Social.framework */,
+				D324CF991B738DC300FFD985 /* Accounts.framework */,
+				D324CF971B738DB900FFD985 /* libsqlite3.dylib */,
+				D324CF951B738DA200FFD985 /* libstdc++.6.dylib */,
+				D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */,
+				D324CF901B738CA300FFD985 /* ParseUI.framework */,
 				E786C00917C3DD0A0059950B /* libz.dylib */,
 				97C5F59317A344100071C5EC /* Parse.framework */,
 				975C723D17A99E7D0004F0CC /* AudioToolbox.framework */,
@@ -463,6 +492,7 @@
 		D324CF691B7377E000FFD985 /* Bean */ = {
 			isa = PBXGroup;
 			children = (
+				D324CF9F1B739EBD00FFD985 /* ConnectionEx */,
 				D324CF711B7377E000FFD985 /* libBean iOS Library.a */,
 				D324CF721B7377E000FFD985 /* PTDBean.h */,
 				D324CF731B7377E000FFD985 /* PTDBeanManager.h */,
@@ -471,6 +501,19 @@
 			);
 			path = Bean;
 			sourceTree = SOURCE_ROOT;
+		};
+		D324CF9F1B739EBD00FFD985 /* ConnectionEx */ = {
+			isa = PBXGroup;
+			children = (
+				D324CFA01B739EBD00FFD985 /* PTDBeanDetailController.h */,
+				D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */,
+				D324CFA21B739EBD00FFD985 /* PTDBeanHeaderCell.h */,
+				D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */,
+				D324CFA41B739EBD00FFD985 /* PTDBeanListViewController.h */,
+				D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */,
+			);
+			path = ConnectionEx;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -582,6 +625,7 @@
 				97C5F56F17A343AE0071C5EC /* main.m in Sources */,
 				97C5F57317A343AE0071C5EC /* PDDAppDelegate.m in Sources */,
 				97C5F57C17A343AE0071C5EC /* PDDScheduleViewController.m in Sources */,
+				D324CFA81B739EBD00FFD985 /* PTDBeanListViewController.m in Sources */,
 				97C5F58317A343AE0071C5EC /* PDDListViewController.m in Sources */,
 				97C5F59A17A345BA0071C5EC /* PDDTalk.m in Sources */,
 				97C5F59D17A346190071C5EC /* PDDSpeaker.m in Sources */,
@@ -594,8 +638,10 @@
 				975C726117A9E1260004F0CC /* PDDTalkViewController.m in Sources */,
 				974463A117C2D155009AF79B /* PDDContentView.m in Sources */,
 				975C726417A9E1320004F0CC /* PDDTalkView.m in Sources */,
+				D324CFA71B739EBD00FFD985 /* PTDBeanHeaderCell.m in Sources */,
 				97CA1C1F17BED3A0000F4D10 /* PDDPhotoView.m in Sources */,
 				97CA1C2C17C2C69F000F4D10 /* UIView+ParseDevDay.m in Sources */,
+				D324CFA61B739EBD00FFD985 /* PTDBeanDetailController.m in Sources */,
 				975C726D17AADD1E0004F0CC /* PDDSpeakerViewController.m in Sources */,
 				975C727017AADD280004F0CC /* PDDSpeakerView.m in Sources */,
 				97717EE517AAE9C6005BB328 /* PDDScheduleView.m in Sources */,
@@ -693,6 +739,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
@@ -703,7 +750,7 @@
 					"$(PROJECT_DIR)/Bean",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s armv8";
@@ -721,6 +768,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
@@ -731,7 +779,7 @@
 					"$(PROJECT_DIR)/Bean",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91C8B455-8164-4102-A367-79CC2C9FBF1C";
@@ -778,6 +826,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
@@ -788,7 +837,7 @@
 					"$(PROJECT_DIR)/Bean",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "87206BFA-1C69-4181-968A-ED84F46DC514";
