@@ -103,7 +103,6 @@ public class MainActivity extends ActionBarActivity implements TabListener {
             TalkListFragment fragment = (TalkListFragment) adapter.getItem(TAB_FAVORITES);
             fragment.removeUnfavoritedItems();
         }
-
     }
 
     @Override
@@ -120,7 +119,7 @@ public class MainActivity extends ActionBarActivity implements TabListener {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private TalkListFragment scheduleFragment = null;
         private TalkListFragment favoritesFragment = null;
-        private IBeaconListFragment iBeaconsFragment = null;
+        private TalkListFragment iBeaconsFragment = null;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -152,9 +151,13 @@ public class MainActivity extends ActionBarActivity implements TabListener {
                     return favoritesFragment;
                 }
                 case TAB_IBEACON: {
-                    android.util.Log.w("test", "TAB_IBEACON!!!!!!!!!!!!!!!");
+                    android.util.Log.w("test", "TAB_IBEACON");
                     if (iBeaconsFragment == null) {
-                        iBeaconsFragment = new IBeaconListFragment();
+                        iBeaconsFragment = new TalkListFragment();
+                        Bundle args = new Bundle();
+                        args.putBoolean("nearbyRoomsOnly", true);
+                        iBeaconsFragment.setArguments(args);
+                        android.util.Log.w("test", "Beacons CASE");
                     }
                     return iBeaconsFragment;
                 }

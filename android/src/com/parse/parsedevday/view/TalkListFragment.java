@@ -1,5 +1,6 @@
 package com.parse.parsedevday.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.widget.ArrayAdapter;
@@ -9,6 +10,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.parsedevday.R;
 import com.parse.parsedevday.model.Favorites;
+import com.parse.parsedevday.model.Room;
 import com.parse.parsedevday.model.Talk;
 import com.parse.parsedevday.model.TalkComparator;
 
@@ -33,6 +35,7 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
 
     // Whether or not to show only favorites.
     private boolean favoritesOnly = false;
+    private boolean nearbyRoomsOnly = false;
 
     public TalkListFragment() {
     }
@@ -42,10 +45,12 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
         View view = inflater.inflate(R.layout.fragment_talk_list, container, false);
 
         favoritesOnly = false;
+        nearbyRoomsOnly = false;
 
         Bundle args = getArguments();
         if (args != null) {
             favoritesOnly = args.getBoolean("favoritesOnly");
+            nearbyRoomsOnly = args.getBoolean("nearbyRoomsOnly");
         }
 
         adapter = new TalkListAdapter(getActivity());
@@ -73,11 +78,25 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
          * Add all of the talks to the adapter, skipping any that weren't favorited, if
          * favoritesOnly is true.
          */
-                for (Talk talk : talks) {
-                    if (!favoritesOnly || talk.isAlwaysFavorite() || Favorites.get().contains(talk)) {
-                        adapter.add(talk);
+                if (nearbyRoomsOnly) {
+                    List<String> iBeaconsAddresses = IBeaconManager.getInstance().getIBeaconsAddresses();
+                    for (Talk talk : talks) {
+                        if (isCurrentRoomTalk(iBeaconsAddresses, talk)) {
+                            adapter.add(talk);
+                        }
+                    }
+                } else {
+                    for (Talk talk : talks) {
+                        if (!favoritesOnly || talk.isAlwaysFavorite() || Favorites.get().contains(talk)) {
+                            adapter.add(talk);
+                        }
                     }
                 }
+            }
+
+            private boolean isCurrentRoomTalk(List<String> iBeaconsAddresses, Talk talk) {
+                String roomIBeaconAddress = (String)((Room)talk.get("room")).get("iBeaconMacAddress");
+                return (roomIBeaconAddress != null && iBeaconsAddresses.contains(roomIBeaconAddress));
             }
         });
 

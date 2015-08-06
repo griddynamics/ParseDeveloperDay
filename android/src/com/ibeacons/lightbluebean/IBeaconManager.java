@@ -76,4 +76,14 @@ public class IBeaconManager implements IBeaconInterface {
         mTimer.purge();
         BeanManager.getInstance().cancelDiscovery();
     }
+
+    public List<String> getIBeaconsAddresses() {
+        List<IBeacon> iBeacons = getIBeacons();
+        List<String> iBeaconsAddresses = new ArrayList<String>();
+        for(IBeacon b : iBeacons) {
+            iBeaconsAddresses.add(b.getAddress());
+        }
+        return iBeaconsAddresses;
+    }
+
 }
