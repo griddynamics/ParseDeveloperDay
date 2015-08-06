@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Punch Through Design LLC. All rights reserved.
 //
 
-#import <PTDBeanManager.h>
+#import "PTDBeanManager.h"
 
 @interface PTDBeanHeaderCell : UITableViewCell
 @property (nonatomic, strong) PTDBean *bean;

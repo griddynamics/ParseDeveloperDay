@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Punch Through Design LLC. All rights reserved.
 //
 
-#import <PTDBeanManager.h>
+#import "PTDBeanManager.h"
 
 @interface PTDBeanDetailController : UIViewController
 @property (nonatomic, strong) PTDBean *bean;

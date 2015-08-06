@@ -42,7 +42,7 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"iBeacons";
-        self.tabBarItem.image = [UIImage imageNamed:@"location"];
+        self.tabBarItem.image = [UIImage imageNamed:@"ibeacons"];
         self.currentSectionSort = kPDDTalkSectionByTime;
     }
     return self;
