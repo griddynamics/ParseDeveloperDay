@@ -11,4 +11,11 @@
         android:layout_weight="1" >
     </ListView>
 
+    <TextView android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="Please enable Bluetooth at the conference"
+        android:visibility="gone"/>
+
 </LinearLayout>

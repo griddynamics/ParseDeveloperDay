@@ -42,7 +42,7 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_talk_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_talk_list, container, false);
 
         favoritesOnly = false;
         nearbyRoomsOnly = false;
@@ -54,7 +54,7 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
         }
 
         adapter = new TalkListAdapter(getActivity());
-        ListView list = (ListView) view.findViewById(R.id.list_view);
+        final ListView list = (ListView) view.findViewById(R.id.list_view);
         list.setAdapter(adapter);
 
         // Fetch the list of all talks from Parse or the query cache.
@@ -85,6 +85,7 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
                             adapter.add(talk);
                         }
                     }
+                    setOnEmptyBeaconsListView();
                 } else {
                     for (Talk talk : talks) {
                         if (!favoritesOnly || talk.isAlwaysFavorite() || Favorites.get().contains(talk)) {
@@ -94,9 +95,20 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
                 }
             }
 
+            private void setOnEmptyBeaconsListView() {
+                View emptyTextView = view.findViewById(R.id.empty);
+                list.setEmptyView(emptyTextView);
+            }
+
             private boolean isCurrentRoomTalk(List<String> iBeaconsAddresses, Talk talk) {
-                String roomIBeaconAddress = (String)((Room)talk.get("room")).get("iBeaconMacAddress");
-                return (roomIBeaconAddress != null && iBeaconsAddresses.contains(roomIBeaconAddress));
+                List<String> roomIBeaconAddresses = (List)((Room)talk.get("room")).get("iBeaconMacAddresses");
+                if (roomIBeaconAddresses != null) {
+                    for (String roomIBeaconAddress : roomIBeaconAddresses) {
+                        if (iBeaconsAddresses.contains(roomIBeaconAddress))
+                            return true;
+                    }
+                }
+                return false;
             }
         });
 
