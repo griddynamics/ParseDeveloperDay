@@ -1,7 +1,9 @@
 package com.parse.parsedevday.view;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.widget.ArrayAdapter;
 import com.ibeacons.beaconinterface.IBeacon;
@@ -79,20 +81,37 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
          * favoritesOnly is true.
          */
                 if (nearbyRoomsOnly) {
-                    List<String> iBeaconsAddresses = IBeaconManager.getInstance().getIBeaconsAddresses();
-                    for (Talk talk : talks) {
-                        if (isCurrentRoomTalk(iBeaconsAddresses, talk)) {
-                            adapter.add(talk);
-                        }
-                    }
+                    Set<Talk> talksInRoomsWithFoundIBeacons = getTalksByFoundIBeacons(talks);
+                    adapter.addAll(talksInRoomsWithFoundIBeacons);
+
                     setOnEmptyBeaconsListView();
                 } else {
                     for (Talk talk : talks) {
                         if (!favoritesOnly || talk.isAlwaysFavorite() || Favorites.get().contains(talk)) {
+
+                            android.util.Log.w("test", "Talk object id: " + talk.getObjectId() + "\nRoom name: "
+                                    + talk.getRoom().getName() + "\nMAC addresses: " + (List) talk.getRoom().getIBeaconMacAddresses());
                             adapter.add(talk);
                         }
                     }
                 }
+            }
+
+            private Set<Talk> getTalksByFoundIBeacons(List<Talk> talks) {
+                List<String> iBeaconsAddresses = IBeaconManager.getInstance().getIBeaconsAddresses();
+                Set<Talk> talksInRoomsWithFoundIBeacons = new LinkedHashSet<Talk>();
+                for (String iBeaconAddress : iBeaconsAddresses) {
+                    for (Talk talk : talks) {
+                        List<String> roomIBeaconAddresses = (List)talk.getRoom().getIBeaconMacAddresses();
+                        if (roomIBeaconAddresses != null && roomIBeaconAddresses.contains(iBeaconAddress)) {
+
+                            android.util.Log.w("test", "Talk object id: " + talk.getObjectId() + "\nRoom name: "
+                                    + talk.getRoom().getName() + "\nMAC addresses: " + roomIBeaconAddresses );
+                            talksInRoomsWithFoundIBeacons.add(talk);
+                        }
+                    }
+                }
+                return talksInRoomsWithFoundIBeacons;
             }
 
             private void setOnEmptyBeaconsListView() {
@@ -100,16 +119,6 @@ public class TalkListFragment extends Fragment implements Favorites.Listener {
                 list.setEmptyView(emptyTextView);
             }
 
-            private boolean isCurrentRoomTalk(List<String> iBeaconsAddresses, Talk talk) {
-                List<String> roomIBeaconAddresses = (List)((Room)talk.get("room")).get("iBeaconMacAddresses");
-                if (roomIBeaconAddresses != null) {
-                    for (String roomIBeaconAddress : roomIBeaconAddresses) {
-                        if (iBeaconsAddresses.contains(roomIBeaconAddress))
-                            return true;
-                    }
-                }
-                return false;
-            }
         });
 
         // If the user clicks on a talk, show the details activity with its info.
