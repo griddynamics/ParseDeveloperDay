@@ -7,65 +7,213 @@
 //
 
 #import "IbeaconListViewController.h"
-#import "PDDListView.h"
+
+#import "PTDBeanManager.h"
+
+#import "PDDListViewController.h"
 #import "PDDTalkCell.h"
+#import "IbeaconView.h"
 
 #import "PDDTalk.h"
 #import "PDDSlot.h"
 #import "PDDRoom.h"
+#import "PDDConstants.h"
 
 #import "UIColor+ParseDevDay.h"
 
 #import <Parse/Parse.h>
 
-@interface IbeaconListViewController()
+@interface IbeaconListViewController () <PTDBeanManagerDelegate, PTDBeanDelegate>
+// all the beans returned from a scan
+@property (nonatomic, strong) NSMutableDictionary *beans;
+// how we access the beans
+@property (nonatomic, strong) PTDBeanManager *beanManager;
 @property (weak, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *rawTalks;
 @property (strong, nonatomic) NSDictionary *dataBySection;
 @property (strong, nonatomic) NSArray *sortedSections;
 @property (nonatomic) PDDTalkSectionType currentSectionSort;
 
-- (void)changeSections:(id)sender;
+@property (strong, nonatomic) NSMutableArray *checkedTalks;
+@property (nonatomic) int flagOne;
+@property (nonatomic) int flagTwo;
+@property (strong, atomic) NSTimer *timer;
+@property (strong, nonatomic) NSMutableArray *beansArr;
+@property (strong, nonatomic) NSArray *sortedArray;
+@property (atomic) BOOL isViewed;
+@property (strong, nonatomic) UIAlertView *searchingAlert;
+@property (strong, nonatomic) UIAlertView *alert;
 
-- (void)_reorderTableViewSections;
-- (void)_reorderTableViewSectionsByTime;
-- (void)_reorderTableViewSectionsByTrack;
-- (void)_setObject:(id)object inArray:(id)key inDictionary:(NSMutableDictionary *)dict;
-- (BOOL)_isSortByTime;
-- (void)_reloadVisibleRows;
-- (BOOL)_isLastSection:(NSInteger)sectionIndex;
-- (BOOL)_isLastRow:(NSIndexPath *)indexPath;
 @end
 
 @implementation IbeaconListViewController
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"iBeacons";
+        self.title = @"Talks here";
         self.tabBarItem.image = [UIImage imageNamed:@"ibeacons"];
-        self.currentSectionSort = kPDDTalkSectionByTime;
+        self.isViewed = NO;
     }
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.beans = [NSMutableDictionary dictionary];
+    self.checkedTalks = [NSMutableArray new];
+    self.beansArr = [NSMutableArray array];
+    NSLog(@"VIEW DID LOAD");
+}
+
+- (void)checkAndScan {
+    NSLog(@"self.beans %d", [self.beans count]);
+    NSLog(@"self.rawtalks count %lu", (unsigned long)[self.rawTalks count]);
+    NSLog(@"self.checkedtalks count %lu", (unsigned long)[self.checkedTalks count]);
+    
+    self.flagOne = self.flagTwo;
+    NSLog(@"self.flagOne %d", self.flagOne);
+    self.flagTwo = [self.beans count];
+    NSLog(@"self.flagTwo %d", self.flagTwo);
+    if ([self.beans count] == 0 && self.flagOne == 0) {
+        [self reset];
+        [self reorderTableViewSections];
+        [self startScan];
+    } else {
+        self.rawTalks = self.checkedTalks;
+    }
+    self.beans.removeAllObjects;
+    self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
+    self.beansArr.removeAllObjects;
+}
+
+-(void)reset {
+    self.checkedTalks.removeAllObjects;
+    self.rawTalks = self.checkedTalks;
+    self.beansArr.removeAllObjects;
+}
+
+-(void)startScan {
+    self.beans.removeAllObjects;
+    self.isViewed = NO;
+    if (([self.beans count] == 0) && ![self.searchingAlert isVisible] && ![self.alert isVisible] && (self.beanManager.state == BeanManagerState_PoweredOn)) {
+        NSLog(@"dsfsdf %d", (self.beanManager.state == BeanManagerState_PoweredOn));
+        self.searchingAlert = [[UIAlertView alloc] initWithTitle:@"Please wait" message:@"Searching your location.." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+        [self.searchingAlert show];
+        return;
+    }
+    self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    NSLog(@"index %ld", (long)buttonIndex);
+    if (buttonIndex == 0) {
+        [self.timer invalidate];
+    }
+}
+
+- (void)beanManagerDidUpdateState:(PTDBeanManager *)manager{
+    if(self.beanManager.state == BeanManagerState_PoweredOn){
+        [self.beanManager startScanningForBeans_error:nil];
+    } else if ((self.beanManager.state == BeanManagerState_PoweredOff) && (!self.isViewed) && ![self.alert isVisible]) {
+        self.alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Turn on bluetooth to continue" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [self.alert show];
+        [self.timer invalidate];
+        self.isViewed = YES;
+        NSLog(@"isViewed %hhd", self.isViewed);
+        return;
+    }
+}
+
 - (void)loadView {
-    PDDListView *listView = [[PDDListView alloc] init];
+    IbeaconView *listView = [[IbeaconView alloc] init];
     listView.delegate = self;
     listView.dataSource = self;
     self.tableView = listView;
     self.view = listView;
+    NSLog(@"LOAD VIEW");
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(startScan)
+                                                name:UIApplicationDidBecomeActiveNotification
+                                              object:nil];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [PDDTalk findAllInBackgroundWithBlock:^(NSArray *talks, NSError *error) {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"VIEW WILL APPEAR");
+    [self startScan];
+    NSTimeInterval numberOfSeconds = 4;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:numberOfSeconds
+                                             target:self
+                                           selector:@selector(checkAndScan)
+                                           userInfo:nil
+                                            repeats:YES];
+    
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reset];
+    [self.timer invalidate];
+    NSError *stopScanningError;
+    [self.beanManager stopScanningForBeans_error:&stopScanningError];
+    self.checkedTalks.removeAllObjects;
+    self.rawTalks = self.checkedTalks;
+    [self.tableView reloadData];
+    [self reorderTableViewSections];
+    [self reset];
+    self.isViewed = NO;
+    NSLog(@"VIEW WILL DISAPPEAR");
+}
+
+- (void)BeanManager:(PTDBeanManager*)beanManager didDiscoverBean:(PTDBean*)bean error:(NSError*)error{
+    NSUUID * key = bean.identifier;
+    [self.beansArr addObject:bean];
+    
+    if (![self.beans objectForKey:key]) {
+        [self.beans setObject:bean forKey:key];
+    }
+        self.sortedArray = [NSArray new];
+        self.sortedArray = [self.beansArr sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        int first = [[(PTDBean*)a RSSI] intValue];
+        int second = [[(PTDBean*)b RSSI] intValue];
+        return first < second;
+        }];
+    
+//    for (int i = 0; i < [self.sortedArray count]; i++) {
+//        NSLog(@"sorted array el %d", [[(PTDBean*)[self.sortedArray objectAtIndex:i] RSSI] intValue]);
+//    }
+    
+    [PDDTalk findByBeaconInBackgroundWithBlock:^(NSArray *talks, NSError *error) {
+        
+        PTDBean *beanWithBestRssi = [self.sortedArray objectAtIndex:0];
+        
         if (error) {
             NSLog(@"Error while loading data: %@", error);
             return;
         }
-        self.rawTalks = talks;
-        [self _reorderTableViewSections];
+        
+        self.checkedTalks.removeAllObjects;
+            NSUInteger count = [talks count];
+            for (NSUInteger i = 0; i < count; i++) {
+                PDDTalk *talk = [talks objectAtIndex: i];
+                NSArray *beaconsForChecking = talk.room.iBeaconUuidIdentifier;
+                if ([beaconsForChecking containsObject:([beanWithBestRssi.identifier UUIDString])]) {
+                    [_checkedTalks addObject: talk];
+                }
+            }
+        
+        
+        self.rawTalks = _checkedTalks;
+        [self.tableView reloadData];
+        [self reorderTableViewSections];
+        if ([self.searchingAlert isVisible] && [self.tableView numberOfSections] !=0) {
+            [self.searchingAlert dismissWithClickedButtonIndex:0 animated:YES];
+        }
     }];
+    
+//    }
+    
+    
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -101,7 +249,6 @@
     } else {
         [cell setTalk:[self talkForIndexPath:indexPath]];
     }
-    
     return cell;
 }
 
@@ -109,7 +256,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self _isLastRow:indexPath]) {
         self.currentSectionSort = (self.currentSectionSort == kPDDTalkSectionByTime) ? kPDDTalkSectionByTrack : kPDDTalkSectionByTime;
-        [self _reorderTableViewSections];
+        [self reorderTableViewSections];
         return;
     }
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
@@ -133,18 +280,18 @@
     [self _reloadVisibleRows];
 }
 
-#pragma mark - IbeaconListViewController methods
+#pragma mark - PDDListViewController methods
 - (void)changeSections:(id)sender {
     UISegmentedControl *control = sender;
     if (self.currentSectionSort == control.selectedSegmentIndex) {
         return;
     }
     self.currentSectionSort = control.selectedSegmentIndex;
-    [self _reorderTableViewSections];
+    [self reorderTableViewSections];
 }
 
 #pragma mark - Private methods
-- (void)_reorderTableViewSections {
+- (void)reorderTableViewSections {
     if ([self _isSortByTime]) {
         [self _reorderTableViewSectionsByTime];
     } else {
@@ -157,6 +304,7 @@
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [self.rawTalks enumerateObjectsUsingBlock:^(PDDTalk *talk, NSUInteger idx, BOOL *stop) {
         id groupKey = talk.slot.startTime;
+        
         [self _setObject:talk inArray:groupKey inDictionary:dictionary];
     }];
     
@@ -181,6 +329,7 @@
             return;
         }
         id groupKey = talk.room.name;
+
         [self _setObject:talk inArray:groupKey inDictionary:dictionary];
     }];
     
@@ -219,4 +368,9 @@
     return indexPath.row == [[self.dataBySection objectForKey:sectionKey] count];
 }
 
+
+
 @end
+
+
+

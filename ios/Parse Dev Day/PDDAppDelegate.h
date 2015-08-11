@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PDDAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface PDDAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate> 
 
 @property (strong, nonatomic) UIWindow *window;
 

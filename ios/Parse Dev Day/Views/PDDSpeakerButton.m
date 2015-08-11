@@ -64,7 +64,7 @@
                                                                      options:0
                                                                      metrics:nil
                                                                        views:NSDictionaryOfVariableBindings(photoView)]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[photoView(80)]-[detailView]-5-|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-10-[detailView]-[photoView(80)]-5-|"
                                                                      options:NSLayoutFormatAlignAllCenterY
                                                                      metrics:nil
                                                                        views:NSDictionaryOfVariableBindings(photoView, detailView)]];
@@ -74,8 +74,8 @@
                                                                        views:NSDictionaryOfVariableBindings(nameLabel, companyLabel, twitterLabel)]];
 
         // Fill in data
-   //     self.photoView.file = speaker.photo;
-   //     [self.photoView loadInBackground];
+        self.photoView.file = speaker.photo;
+        [self.photoView loadInBackground];
         self.nameLabel.text = speaker.name;
         self.companyLabel.text = [NSString stringWithFormat:@"%@ @ %@", speaker.title, speaker.company];
         self.twitterLabel.hidden = !speaker.twitter;

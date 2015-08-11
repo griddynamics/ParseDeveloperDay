@@ -38,6 +38,7 @@
     // the next vc grabs the delegate to receive callbacks
     // when the view appears , we want to grab them back.
     self.beanManager.delegate = self;
+
     [self.tableView reloadData];
 }
 

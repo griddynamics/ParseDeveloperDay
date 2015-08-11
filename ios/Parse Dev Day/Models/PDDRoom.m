@@ -12,6 +12,9 @@
 @implementation PDDRoom
 
 @dynamic name;
+@dynamic beacon;
+@dynamic iBeaconMacAddresses;
+@dynamic iBeaconUuidIdentifier;
 
 + (NSString *)parseClassName {
     return @"Room";

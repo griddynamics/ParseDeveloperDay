@@ -9,4 +9,8 @@
 
 @interface PDDRoom : PFObject<PFSubclassing>
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *beacon;
+@property (strong, nonatomic) NSArray *iBeaconMacAddresses;
+@property (strong, nonatomic) NSArray *iBeaconUuidIdentifier;
+
 @end
