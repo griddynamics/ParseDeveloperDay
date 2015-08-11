@@ -119,7 +119,7 @@ public class MainActivity extends ActionBarActivity implements TabListener {
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         private TalkListFragment scheduleFragment = null;
         private TalkListFragment favoritesFragment = null;
-        private TalkListFragment iBeaconsFragment = null;
+        private TalkListFragment talkListFragment = null;
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -152,14 +152,14 @@ public class MainActivity extends ActionBarActivity implements TabListener {
                 }
                 case TAB_IBEACON: {
                     android.util.Log.w("test", "TAB_IBEACON");
-                    if (iBeaconsFragment == null) {
-                        iBeaconsFragment = new TalkListFragment();
+                    if (talkListFragment == null) {
+                        talkListFragment = new TalkListFragment();
                         Bundle args = new Bundle();
                         args.putBoolean("nearbyRoomsOnly", true);
-                        iBeaconsFragment.setArguments(args);
+                        talkListFragment.setArguments(args);
                         android.util.Log.w("test", "Beacons CASE");
                     }
-                    return iBeaconsFragment;
+                    return talkListFragment;
                 }
             }
             return null;
