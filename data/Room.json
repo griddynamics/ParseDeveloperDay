@@ -1,6 +1,10 @@
 { "results": [
 {
   "name": "Salon 7",
+  "iBeaconMacAddresses": [
+    "78:A5:04:5F:F0:04",
+    "D0:39:72:EC:33:A5"
+  ],
   "nickname": "3",
   "createdAt": "2013-07-29T01:14:48.719Z",
   "updatedAt": "2013-09-05T20:40:18.278Z",
@@ -8,6 +12,9 @@
 },
 {
   "name": "Salon 6",
+  "iBeaconUuidIdentifier": [
+    "1A2C3C50-7DD9-A718-B85C-77F1E461E223"
+  ],
   "nickname": "2",
   "createdAt": "2013-07-29T01:14:44.903Z",
   "updatedAt": "2013-09-05T20:40:27.559Z",

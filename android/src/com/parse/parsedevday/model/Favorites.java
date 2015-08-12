@@ -199,11 +199,10 @@ public class Favorites {
   }
 
   /**
-   * Saves the current set of favorites both to the local disk and to Parse. This returns
+   * Saves the current set of favorites to the local disk. This returns
    * immediately, which the saves run asynchronously.
    */
   public void save(final Context context) {
     saveLocally(context);
-    saveToParse();
   }
 }
