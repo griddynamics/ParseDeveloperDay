@@ -43,7 +43,6 @@
 		975C725317A99E980004F0CC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C724117A99E7D0004F0CC /* MobileCoreServices.framework */; };
 		975C725417A99E980004F0CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C724217A99E7D0004F0CC /* QuartzCore.framework */; };
 		975C725517A99E980004F0CC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C724317A99E7D0004F0CC /* Security.framework */; };
-		975C725617A99E980004F0CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C724417A99E7D0004F0CC /* StoreKit.framework */; };
 		975C725717A99E980004F0CC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975C724517A99E7D0004F0CC /* SystemConfiguration.framework */; };
 		975C725B17A9BBA50004F0CC /* PDDListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C725A17A9BBA50004F0CC /* PDDListView.m */; };
 		975C725E17A9C5C70004F0CC /* PDDTalkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 975C725D17A9C5C70004F0CC /* PDDTalkCell.m */; };
@@ -65,7 +64,6 @@
 		97C5F57917A343AE0071C5EC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C5F57817A343AE0071C5EC /* Default-568h@2x.png */; };
 		97C5F57C17A343AE0071C5EC /* PDDScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F57B17A343AE0071C5EC /* PDDScheduleViewController.m */; };
 		97C5F58317A343AE0071C5EC /* PDDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F58217A343AE0071C5EC /* PDDListViewController.m */; };
-		97C5F59417A344100071C5EC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C5F59317A344100071C5EC /* Parse.framework */; };
 		97C5F59A17A345BA0071C5EC /* PDDTalk.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59917A345BA0071C5EC /* PDDTalk.m */; };
 		97C5F59D17A346190071C5EC /* PDDSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59C17A346180071C5EC /* PDDSpeaker.m */; };
 		97C5F5A017A3467E0071C5EC /* PDDRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5F59F17A3467E0071C5EC /* PDDRoom.m */; };
@@ -84,6 +82,23 @@
 		97F9D6E817AC49AF00C6B9C6 /* PDDSpeakerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F9D6E717AC49AF00C6B9C6 /* PDDSpeakerButton.m */; };
 		97F9D6EC17AC653A00C6B9C6 /* UIColor+ParseDevDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F9D6EB17AC653A00C6B9C6 /* UIColor+ParseDevDay.m */; };
 		D324CE441B72721800FFD985 /* IbeaconListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CE431B72721800FFD985 /* IbeaconListViewController.m */; };
+		D324CF791B7377E000FFD985 /* libBean iOS Library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF711B7377E000FFD985 /* libBean iOS Library.a */; };
+		D324CF7C1B73783700FFD985 /* ibeacons.png in Resources */ = {isa = PBXBuildFile; fileRef = D324CF7A1B73783700FFD985 /* ibeacons.png */; };
+		D324CF7D1B73783700FFD985 /* ibeacons@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D324CF7B1B73783700FFD985 /* ibeacons@2x.png */; };
+		D324CF8C1B738CA100FFD985 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C5F59317A344100071C5EC /* Parse.framework */; };
+		D324CF911B738CA300FFD985 /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */; };
+		D324CF941B738CA300FFD985 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF901B738CA300FFD985 /* ParseUI.framework */; };
+		D324CF981B738DB900FFD985 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF971B738DB900FFD985 /* libsqlite3.dylib */; };
+		D324CF9A1B738DC300FFD985 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF991B738DC300FFD985 /* Accounts.framework */; };
+		D324CF9C1B738DCA00FFD985 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF9B1B738DCA00FFD985 /* Social.framework */; };
+		D324CF9E1B73907600FFD985 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF9D1B73907600FFD985 /* Bolts.framework */; };
+		D324CFA61B739EBD00FFD985 /* PTDBeanDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */; };
+		D324CFA71B739EBD00FFD985 /* PTDBeanHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */; };
+		D324CFA81B739EBD00FFD985 /* PTDBeanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */; };
+		D324CFAA1B73AE7D00FFD985 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CFA91B73AE7D00FFD985 /* libc++abi.dylib */; };
+		D324CFAD1B73AF5800FFD985 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CF951B738DA200FFD985 /* libstdc++.6.dylib */; };
+		D324CFAF1B73B1CE00FFD985 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324CFAE1B73B1CE00FFD985 /* StoreKit.framework */; };
+		D33058631B74CCFC00B0AC0D /* IbeaconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33058621B74CCFC00B0AC0D /* IbeaconView.m */; };
 		E786C00A17C3DD0A0059950B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E786C00917C3DD0A0059950B /* libz.dylib */; };
 /* End PBXBuildFile section */
 
@@ -132,7 +147,6 @@
 		975C724117A99E7D0004F0CC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		975C724217A99E7D0004F0CC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		975C724317A99E7D0004F0CC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		975C724417A99E7D0004F0CC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		975C724517A99E7D0004F0CC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		975C725917A9BBA50004F0CC /* PDDListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDDListView.h; sourceTree = "<group>"; };
 		975C725A17A9BBA50004F0CC /* PDDListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDDListView.m; sourceTree = "<group>"; };
@@ -198,6 +212,31 @@
 		97F9D6EB17AC653A00C6B9C6 /* UIColor+ParseDevDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ParseDevDay.m"; sourceTree = "<group>"; };
 		D324CE421B72721800FFD985 /* IbeaconListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IbeaconListViewController.h; path = Ibeacon/IbeaconListViewController.h; sourceTree = "<group>"; };
 		D324CE431B72721800FFD985 /* IbeaconListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IbeaconListViewController.m; path = Ibeacon/IbeaconListViewController.m; sourceTree = "<group>"; };
+		D324CF711B7377E000FFD985 /* libBean iOS Library.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libBean iOS Library.a"; sourceTree = "<group>"; };
+		D324CF721B7377E000FFD985 /* PTDBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBean.h; sourceTree = "<group>"; };
+		D324CF731B7377E000FFD985 /* PTDBeanManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanManager.h; sourceTree = "<group>"; };
+		D324CF741B7377E000FFD985 /* PTDBeanRadioConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanRadioConfig.h; sourceTree = "<group>"; };
+		D324CF751B7377E000FFD985 /* PTDBleDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBleDevice.h; sourceTree = "<group>"; };
+		D324CF7A1B73783700FFD985 /* ibeacons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ibeacons.png; sourceTree = "<group>"; };
+		D324CF7B1B73783700FFD985 /* ibeacons@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ibeacons@2x.png"; sourceTree = "<group>"; };
+		D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		D324CF901B738CA300FFD985 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		D324CF951B738DA200FFD985 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		D324CF971B738DB900FFD985 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D324CF991B738DC300FFD985 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		D324CF9B1B738DCA00FFD985 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D324CF9D1B73907600FFD985 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		D324CFA01B739EBD00FFD985 /* PTDBeanDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanDetailController.h; sourceTree = "<group>"; };
+		D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanDetailController.m; sourceTree = "<group>"; };
+		D324CFA21B739EBD00FFD985 /* PTDBeanHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanHeaderCell.h; sourceTree = "<group>"; };
+		D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanHeaderCell.m; sourceTree = "<group>"; };
+		D324CFA41B739EBD00FFD985 /* PTDBeanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDBeanListViewController.h; sourceTree = "<group>"; };
+		D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDBeanListViewController.m; sourceTree = "<group>"; };
+		D324CFA91B73AE7D00FFD985 /* libc++abi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++abi.dylib"; path = "usr/lib/libc++abi.dylib"; sourceTree = SDKROOT; };
+		D324CFAB1B73AEE500FFD985 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		D324CFAE1B73B1CE00FFD985 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		D33058611B74CCC000B0AC0D /* IbeaconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IbeaconView.h; sourceTree = "<group>"; };
+		D33058621B74CCFC00B0AC0D /* IbeaconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IbeaconView.m; sourceTree = "<group>"; };
 		E786C00917C3DD0A0059950B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -206,19 +245,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D324CFAF1B73B1CE00FFD985 /* StoreKit.framework in Frameworks */,
+				D324CFAD1B73AF5800FFD985 /* libstdc++.6.dylib in Frameworks */,
+				D324CFAA1B73AE7D00FFD985 /* libc++abi.dylib in Frameworks */,
+				D324CF9E1B73907600FFD985 /* Bolts.framework in Frameworks */,
+				D324CF8C1B738CA100FFD985 /* Parse.framework in Frameworks */,
+				D324CF911B738CA300FFD985 /* ParseCrashReporting.framework in Frameworks */,
+				D324CF941B738CA300FFD985 /* ParseUI.framework in Frameworks */,
+				D324CF9C1B738DCA00FFD985 /* Social.framework in Frameworks */,
+				D324CF9A1B738DC300FFD985 /* Accounts.framework in Frameworks */,
+				D324CF981B738DB900FFD985 /* libsqlite3.dylib in Frameworks */,
 				E786C00A17C3DD0A0059950B /* libz.dylib in Frameworks */,
-				975C724F17A99E980004F0CC /* AudioToolbox.framework in Frameworks */,
-				975C725017A99E980004F0CC /* CFNetwork.framework in Frameworks */,
-				975C725117A99E980004F0CC /* CoreLocation.framework in Frameworks */,
-				975C725317A99E980004F0CC /* MobileCoreServices.framework in Frameworks */,
-				975C725417A99E980004F0CC /* QuartzCore.framework in Frameworks */,
-				975C725517A99E980004F0CC /* Security.framework in Frameworks */,
-				975C725617A99E980004F0CC /* StoreKit.framework in Frameworks */,
 				975C725717A99E980004F0CC /* SystemConfiguration.framework in Frameworks */,
+				975C725517A99E980004F0CC /* Security.framework in Frameworks */,
+				975C725417A99E980004F0CC /* QuartzCore.framework in Frameworks */,
+				975C725117A99E980004F0CC /* CoreLocation.framework in Frameworks */,
 				97C5F56717A343AE0071C5EC /* CoreGraphics.framework in Frameworks */,
+				975C725017A99E980004F0CC /* CFNetwork.framework in Frameworks */,
+				975C724F17A99E980004F0CC /* AudioToolbox.framework in Frameworks */,
+				D324CF791B7377E000FFD985 /* libBean iOS Library.a in Frameworks */,
+				975C725317A99E980004F0CC /* MobileCoreServices.framework in Frameworks */,
 				97C5F56317A343AE0071C5EC /* UIKit.framework in Frameworks */,
 				97C5F56517A343AE0071C5EC /* Foundation.framework in Frameworks */,
-				97C5F59417A344100071C5EC /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +317,8 @@
 				975C726317A9E1320004F0CC /* PDDTalkView.m */,
 				975C726E17AADD280004F0CC /* PDDSpeakerView.h */,
 				975C726F17AADD280004F0CC /* PDDSpeakerView.m */,
+				D33058611B74CCC000B0AC0D /* IbeaconView.h */,
+				D33058621B74CCFC00B0AC0D /* IbeaconView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +343,16 @@
 		97C5F56117A343AE0071C5EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D324CFAE1B73B1CE00FFD985 /* StoreKit.framework */,
+				D324CFAB1B73AEE500FFD985 /* libstdc++.6.0.9.dylib */,
+				D324CFA91B73AE7D00FFD985 /* libc++abi.dylib */,
+				D324CF9D1B73907600FFD985 /* Bolts.framework */,
+				D324CF9B1B738DCA00FFD985 /* Social.framework */,
+				D324CF991B738DC300FFD985 /* Accounts.framework */,
+				D324CF971B738DB900FFD985 /* libsqlite3.dylib */,
+				D324CF951B738DA200FFD985 /* libstdc++.6.dylib */,
+				D324CF8D1B738CA300FFD985 /* ParseCrashReporting.framework */,
+				D324CF901B738CA300FFD985 /* ParseUI.framework */,
 				E786C00917C3DD0A0059950B /* libz.dylib */,
 				97C5F59317A344100071C5EC /* Parse.framework */,
 				975C723D17A99E7D0004F0CC /* AudioToolbox.framework */,
@@ -302,7 +362,6 @@
 				975C724117A99E7D0004F0CC /* MobileCoreServices.framework */,
 				975C724217A99E7D0004F0CC /* QuartzCore.framework */,
 				975C724317A99E7D0004F0CC /* Security.framework */,
-				975C724417A99E7D0004F0CC /* StoreKit.framework */,
 				975C724517A99E7D0004F0CC /* SystemConfiguration.framework */,
 				97C5F56217A343AE0071C5EC /* UIKit.framework */,
 				97C5F56417A343AE0071C5EC /* Foundation.framework */,
@@ -314,6 +373,7 @@
 		97C5F56817A343AE0071C5EC /* Parse Dev Day */ = {
 			isa = PBXGroup;
 			children = (
+				D324CF691B7377E000FFD985 /* Bean */,
 				D324CE411B7271F600FFD985 /* Ibeacon */,
 				97F9D6E917AC652200C6B9C6 /* Categories */,
 				97C5F57117A343AE0071C5EC /* PDDAppDelegate.h */,
@@ -365,6 +425,8 @@
 		97C5F59617A344AF0071C5EC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D324CF7A1B73783700FFD985 /* ibeacons.png */,
+				D324CF7B1B73783700FFD985 /* ibeacons@2x.png */,
 				97C00BD117C52E81007936DA /* Default.png */,
 				97C00BD517C52EC5007936DA /* Default-568h@2x.png */,
 				97C00BD317C52EBE007936DA /* Default@2x.png */,
@@ -438,6 +500,32 @@
 			name = Ibeacon;
 			sourceTree = "<group>";
 		};
+		D324CF691B7377E000FFD985 /* Bean */ = {
+			isa = PBXGroup;
+			children = (
+				D324CF9F1B739EBD00FFD985 /* ConnectionEx */,
+				D324CF711B7377E000FFD985 /* libBean iOS Library.a */,
+				D324CF721B7377E000FFD985 /* PTDBean.h */,
+				D324CF731B7377E000FFD985 /* PTDBeanManager.h */,
+				D324CF741B7377E000FFD985 /* PTDBeanRadioConfig.h */,
+				D324CF751B7377E000FFD985 /* PTDBleDevice.h */,
+			);
+			path = Bean;
+			sourceTree = SOURCE_ROOT;
+		};
+		D324CF9F1B739EBD00FFD985 /* ConnectionEx */ = {
+			isa = PBXGroup;
+			children = (
+				D324CFA01B739EBD00FFD985 /* PTDBeanDetailController.h */,
+				D324CFA11B739EBD00FFD985 /* PTDBeanDetailController.m */,
+				D324CFA21B739EBD00FFD985 /* PTDBeanHeaderCell.h */,
+				D324CFA31B739EBD00FFD985 /* PTDBeanHeaderCell.m */,
+				D324CFA41B739EBD00FFD985 /* PTDBeanListViewController.h */,
+				D324CFA51B739EBD00FFD985 /* PTDBeanListViewController.m */,
+			);
+			path = ConnectionEx;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -469,7 +557,12 @@
 				ORGANIZATIONNAME = Parse;
 				TargetAttributes = {
 					97C5F55E17A343AE0071C5EC = {
-						DevelopmentTeam = 289LFBE5L8;
+						DevelopmentTeam = K4DPK6NCNT;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -479,6 +572,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 97C5F55617A343AE0071C5EC;
 			productRefGroup = 97C5F56017A343AE0071C5EC /* Products */;
@@ -503,6 +597,7 @@
 				974463E417C2E50A009AF79B /* location.png in Resources */,
 				97CE45A517C434BC00F1F128 /* Settings@2x.png in Resources */,
 				9744644517C2ED61009AF79B /* lunch.png in Resources */,
+				D324CF7D1B73783700FFD985 /* ibeacons@2x.png in Resources */,
 				97CE45A317C434B800F1F128 /* Settings.png in Resources */,
 				9744644A17C2EDAC009AF79B /* show@2x.png in Resources */,
 				974463E317C2E50A009AF79B /* clock@2x.png in Resources */,
@@ -515,6 +610,7 @@
 				9744644917C2EDAC009AF79B /* show.png in Resources */,
 				9744644317C2ED61009AF79B /* drink.png in Resources */,
 				97CE45A917C434D300F1F128 /* AppiPhone7@2x.png in Resources */,
+				D324CF7C1B73783700FFD985 /* ibeacons.png in Resources */,
 				9744644117C2ED61009AF79B /* croissant.png in Resources */,
 				9744644617C2ED61009AF79B /* lunch@2x.png in Resources */,
 				974463E517C2E50A009AF79B /* location@2x.png in Resources */,
@@ -546,6 +642,7 @@
 				97C5F56F17A343AE0071C5EC /* main.m in Sources */,
 				97C5F57317A343AE0071C5EC /* PDDAppDelegate.m in Sources */,
 				97C5F57C17A343AE0071C5EC /* PDDScheduleViewController.m in Sources */,
+				D324CFA81B739EBD00FFD985 /* PTDBeanListViewController.m in Sources */,
 				97C5F58317A343AE0071C5EC /* PDDListViewController.m in Sources */,
 				97C5F59A17A345BA0071C5EC /* PDDTalk.m in Sources */,
 				97C5F59D17A346190071C5EC /* PDDSpeaker.m in Sources */,
@@ -558,12 +655,15 @@
 				975C726117A9E1260004F0CC /* PDDTalkViewController.m in Sources */,
 				974463A117C2D155009AF79B /* PDDContentView.m in Sources */,
 				975C726417A9E1320004F0CC /* PDDTalkView.m in Sources */,
+				D324CFA71B739EBD00FFD985 /* PTDBeanHeaderCell.m in Sources */,
 				97CA1C1F17BED3A0000F4D10 /* PDDPhotoView.m in Sources */,
 				97CA1C2C17C2C69F000F4D10 /* UIView+ParseDevDay.m in Sources */,
+				D324CFA61B739EBD00FFD985 /* PTDBeanDetailController.m in Sources */,
 				975C726D17AADD1E0004F0CC /* PDDSpeakerViewController.m in Sources */,
 				975C727017AADD280004F0CC /* PDDSpeakerView.m in Sources */,
 				97717EE517AAE9C6005BB328 /* PDDScheduleView.m in Sources */,
 				D324CE441B72721800FFD985 /* IbeaconListViewController.m in Sources */,
+				D33058631B74CCFC00B0AC0D /* IbeaconView.m in Sources */,
 				970E909C17AB01D600E7E897 /* PDDBaseListViewController.m in Sources */,
 				9735833117BDAC3C0001DBF9 /* PDDSplashView.m in Sources */,
 				970E90A017AB068100E7E897 /* PDDFavoriteButton.m in Sources */,
@@ -599,7 +699,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -630,8 +731,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Parse Inc (289LFBE5L8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parse Inc (289LFBE5L8)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -650,17 +751,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
+					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bean",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "arm64 armv7 armv7s armv8";
@@ -672,17 +780,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
+					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bean",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "91C8B455-8164-4102-A367-79CC2C9FBF1C";
@@ -703,8 +818,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Parse Inc (289LFBE5L8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parse Inc (289LFBE5L8)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -723,17 +838,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Parse Inc (289LFBE5L8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
+					"/Users/abelyakov/Downloads/parse-starter-project-1.7.5/ParseStarterProject",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Parse Dev Day/Parse Dev Day-Prefix.pch";
 				INFOPLIST_FILE = "Parse Dev Day/Parse Dev Day-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bean",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "87206BFA-1C69-4181-968A-ED84F46DC514";

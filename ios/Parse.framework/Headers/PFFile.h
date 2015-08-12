@@ -1,191 +1,389 @@
 //
 //  PFFile.h
-//  Parse
 //
-//  Created by Ilya Sukhar on 10/11/11.
-//  Copyright 2011 Ping Labs, Inc. All rights reserved.
+//  Copyright 2011-present Parse Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "PFConstants.h"
+
+#if TARGET_OS_IPHONE
+#import <Parse/PFConstants.h>
+#else
+#import <ParseOSX/PFConstants.h>
+#endif
+
+PF_ASSUME_NONNULL_BEGIN
+
+@class BFTask;
 
 /*!
- A file of binary data stored on the Parse servers. This can be a image, video, or anything else
- that an application needs to reference in a non-relational way.
+ `PFFile` representes a file of binary data stored on the Parse servers.
+ This can be a image, video, or anything else that an application needs to reference in a non-relational way.
  */
 @interface PFFile : NSObject
 
-/** @name Creating a PFFile */
+///--------------------------------------
+/// @name Creating a PFFile
+///--------------------------------------
 
 /*!
- Creates a file with given data. A name will be assigned to it by the server.
- @param data The contents of the new PFFile.
- @result A PFFile.
+ @abstract Creates a file with given data. A name will be assigned to it by the server.
+
+ @param data The contents of the new `PFFile`.
+
+ @returns A new `PFFile`.
  */
-+ (id)fileWithData:(NSData *)data;
++ (instancetype)fileWithData:(NSData *)data;
 
 /*!
- Creates a file with given data and name.
- @param name The name of the new PFFile.
- @param data The contents of hte new PFFile.
- @result A PFFile.
+ @abstract Creates a file with given data and name.
+
+ @param name The name of the new PFFile. The file name must begin with and
+ alphanumeric character, and consist of alphanumeric characters, periods,
+ spaces, underscores, or dashes.
+ @param data The contents of the new `PFFile`.
+
+ @returns A new `PFFile` object.
  */
-+ (id)fileWithName:(NSString *)name data:(NSData *)data;
++ (instancetype)fileWithName:(PF_NULLABLE NSString *)name data:(NSData *)data;
 
 /*!
- Creates a file with the contents of another file.
- @param name The name of the new PFFile
- @param path The path to the file that will be uploaded to Parse
+ @abstract Creates a file with the contents of another file.
+
+ @warning This method raises an exception if the file at path is not accessible
+ or if there is not enough disk space left.
+
+ @param name  The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
+ @param path  The path to the file that will be uploaded to Parse.
+
+ @returns A new `PFFile` instance.
  */
-+ (id)fileWithName:(NSString *)name 
-    contentsAtPath:(NSString *)path;
++ (instancetype)fileWithName:(PF_NULLABLE NSString *)name contentsAtPath:(NSString *)path;
 
 /*!
-The name of the file.
+ @abstract Creates a file with the contents of another file.
+
+ @param name  The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
+ @param path  The path to the file that will be uploaded to Parse.
+ @param error On input, a pointer to an error object.
+ If an error occurs, this pointer is set to an actual error object containing the error information.
+ You may specify `nil` for this parameter if you do not want the error information.
+
+ @returns A new `PFFile` instance or `nil` if the error occured.
  */
-@property (assign, readonly) NSString *name;
++ (instancetype)fileWithName:(PF_NULLABLE NSString *)name contentsAtPath:(NSString *)path error:(NSError **)error;
 
 /*!
- The url of the file.
+ @abstract Creates a file with given data, name and content type.
+
+ @warning This method raises an exception if the data supplied is not accessible or could not be saved.
+
+ @param name        The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
+ @param data        The contents of the new `PFFile`.
+ @param contentType Represents MIME type of the data.
+
+ @returns A new `PFFile` instance.
  */
-@property (assign, readonly) NSString *url;
-
-/** @name Storing Data with Parse */
++ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                        data:(NSData *)data
+                 contentType:(PF_NULLABLE NSString *)contentType;
 
 /*!
- Whether the file has been uploaded for the first time.
+ @abstract Creates a file with given data, name and content type.
+
+ @param name        The name of the new `PFFile`. The file name must begin with and alphanumeric character,
+ and consist of alphanumeric characters, periods, spaces, underscores, or dashes.
+ @param data        The contents of the new `PFFile`.
+ @param contentType Represents MIME type of the data.
+ @param error On input, a pointer to an error object.
+ If an error occurs, this pointer is set to an actual error object containing the error information.
+ You may specify `nil` for this parameter if you do not want the error information.
+
+ @returns A new `PFFile` instance or `nil` if the error occured.
  */
-@property (readonly) BOOL isDirty;
++ (instancetype)fileWithName:(PF_NULLABLE NSString *)name
+                        data:(NSData *)data
+                 contentType:(PF_NULLABLE NSString *)contentType
+                       error:(NSError **)error;
 
 /*!
- Saves the file.
- @result Returns whether the save succeeded.
+ @abstract Creates a file with given data and content type.
+
+ @param data The contents of the new `PFFile`.
+ @param contentType Represents MIME type of the data.
+
+ @returns A new `PFFile` object.
+ */
++ (instancetype)fileWithData:(NSData *)data contentType:(PF_NULLABLE NSString *)contentType;
+
+/*!
+ @abstract The name of the file.
+
+ @discussion Before the file is saved, this is the filename given by
+ the user. After the file is saved, that name gets prefixed with a unique
+ identifier.
+ */
+@property (nonatomic, copy, readonly) NSString *name;
+
+/*!
+ @abstract The url of the file.
+ */
+@property (PF_NULLABLE_PROPERTY nonatomic, copy, readonly) NSString *url;
+
+///--------------------------------------
+/// @name Storing Data with Parse
+///--------------------------------------
+
+/*!
+ @abstract Whether the file has been uploaded for the first time.
+ */
+@property (nonatomic, assign, readonly) BOOL isDirty;
+
+/*!
+ @abstract Saves the file *synchronously*.
+
+ @returns Returns whether the save succeeded.
  */
 - (BOOL)save;
 
 /*!
- Saves the file and sets an error if it occurs.
- @param error Pointer to an NSError that will be set if necessary.
- @result Returns whether the save succeeded.
+ @abstract Saves the file *synchronously* and sets an error if it occurs.
+
+ @param error Pointer to an `NSError` that will be set if necessary.
+
+ @returns Returns whether the save succeeded.
  */
 - (BOOL)save:(NSError **)error;
 
 /*!
- Saves the file asynchronously.
+ @abstract Saves the file *asynchronously*.
+
+ @returns The task, that encapsulates the work being done.
  */
-- (void)saveInBackground;
+- (BFTask *)saveInBackground;
 
 /*!
- Saves the file asynchronously and executes the given block.
- @param block The block should have the following argument signature: (BOOL succeeded, NSError *error)
+ @abstract Saves the file *asynchronously*
+
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`
+
+ @returns The task, that encapsulates the work being done.
  */
-- (void)saveInBackgroundWithBlock:(PFBooleanResultBlock)block;
+- (BFTask *)saveInBackgroundWithProgressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
 
 /*!
- Saves the file asynchronously and executes the given resultBlock. Executes the progressBlock periodically with the percent
- progress. progressBlock will get called with 100 before resultBlock is called.
- @param block The block should have the following argument signature: (BOOL succeeded, NSError *error)
- @param progressBlock The block should have the following argument signature: (int percentDone)
+ @abstract Saves the file *asynchronously* and executes the given block.
+
+ @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`.
  */
-- (void)saveInBackgroundWithBlock:(PFBooleanResultBlock)block
-                    progressBlock:(PFProgressBlock)progressBlock;
+- (void)saveInBackgroundWithBlock:(PF_NULLABLE PFBooleanResultBlock)block;
 
 /*!
- Saves the file asynchronously and calls the given callback.
+ @abstract Saves the file *asynchronously* and executes the given block.
+
+ @discussion This method will execute the progressBlock periodically with the percent progress.
+ `progressBlock` will get called with `100` before `resultBlock` is called.
+
+ @param block The block should have the following argument signature: `^(BOOL succeeded, NSError *error)`
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`
+ */
+- (void)saveInBackgroundWithBlock:(PF_NULLABLE PFBooleanResultBlock)block
+                    progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+
+/*
+ @abstract Saves the file *asynchronously* and calls the given callback.
+
  @param target The object to call selector on.
- @param selector The selector to call. It should have the following signature: (void)callbackWithResult:(NSNumber *)result error:(NSError *)error. error will be nil on success and set if there was an error. [result boolValue] will tell you whether the call succeeded or not.
+ @param selector The selector to call.
+ It should have the following signature: `(void)callbackWithResult:(NSNumber *)result error:(NSError *)error`.
+ `error` will be `nil` on success and set if there was an error.
+ `[result boolValue]` will tell you whether the call succeeded or not.
  */
-- (void)saveInBackgroundWithTarget:(id)target selector:(SEL)selector;
+- (void)saveInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
 
-/** @name Getting Data from Parse */
+///--------------------------------------
+/// @name Getting Data from Parse
+///--------------------------------------
 
 /*!
- Whether the data is available in memory or needs to be downloaded.
+ @abstract Whether the data is available in memory or needs to be downloaded.
  */
-@property (readonly) BOOL isDataAvailable;
+@property (assign, readonly) BOOL isDataAvailable;
 
 /*!
- Gets the data from cache if available or fetches its contents from the Parse
- servers.
- @result The data. Returns nil if there was an error in fetching.
+ @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.
+
+ @returns The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
  */
-- (NSData *)getData;
+- (PF_NULLABLE NSData *)getData;
 
 /*!
- This method is like getData but avoids ever holding the entire PFFile's
- contents in memory at once. This can help applications with many large PFFiles
- avoid memory warnings.
- @result A stream containing the data. Returns nil if there was an error in 
+ @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+
+ @returns A stream containing the data. Returns `nil` if there was an error in fetching.
+ */
+- (PF_NULLABLE NSInputStream *)getDataStream;
+
+/*!
+ @abstract *Synchronously* gets the data from cache if available or fetches its contents from the network.
+ Sets an error if it occurs.
+
+ @param error Pointer to an `NSError` that will be set if necessary.
+
+ @returns The `NSData` object containing file data. Returns `nil` if there was an error in fetching.
+ */
+- (PF_NULLABLE NSData *)getData:(NSError **)error;
+
+/*!
+ @abstract This method is like <getData> but avoids ever holding the entire `PFFile` contents in memory at once.
+
+ @param error Pointer to an `NSError` that will be set if necessary.
+
+ @returns A stream containing the data. Returns nil if there was an error in
  fetching.
  */
-- (NSInputStream *)getDataStream;
+- (PF_NULLABLE NSInputStream *)getDataStream:(NSError **)error;
 
 /*!
- Gets the data from cache if available or fetches its contents from the Parse
- servers. Sets an error if it occurs.
- @param error Pointer to an NSError that will be set if necessary.
- @result The data. Returns nil if there was an error in fetching.
+ @abstract This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+
+ @see getData
+
+ @returns The task, that encapsulates the work being done.
  */
-- (NSData *)getData:(NSError **)error;
+- (BFTask *)getDataInBackground;
 
 /*!
- This method is like getData: but avoids ever holding the entire PFFile's
- contents in memory at once. This can help applications with many large PFFiles
- avoid memory warnings. Sets an error if it occurs.
- @param error Pointer to an NSError that will be set if necessary.
- @result A stream containing the data. Returns nil if there was an error in 
- fetching.
+ @abstract This method is like <getData> but it fetches asynchronously to avoid blocking the current thread.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+
+ @see getData
+
+ @param progressBlock The block should have the following argument signature: ^(int percentDone)
+
+ @returns The task, that encapsulates the work being done.
  */
-- (NSInputStream *)getDataStream:(NSError **)error;
+- (BFTask *)getDataInBackgroundWithProgressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
 
 /*!
- Asynchronously gets the data from cache if available or fetches its contents 
- from the Parse servers. Executes the given block.
- @param block The block should have the following argument signature: (NSData *result, NSError *error)
+ @abstract This method is like <getDataInBackground> but avoids
+ ever holding the entire `PFFile` contents in memory at once.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+
+ @returns The task, that encapsulates the work being done.
  */
-- (void)getDataInBackgroundWithBlock:(PFDataResultBlock)block;
+- (BFTask *)getDataStreamInBackground;
 
 /*!
- This method is like getDataInBackgroundWithBlock: but avoids ever holding the 
- entire PFFile's contents in memory at once. This can help applications with
- many large PFFiles avoid memory warnings.
- @param block The block should have the following argument signature: (NSInputStream *result, NSError *error)
+ @abstract This method is like <getDataStreamInBackground>, but yields a live-updating stream.
+
+ @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
+ it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
+ the stream, to do proper async file downloading.
+
+ @note You MUST open this stream before reading from it.
+ @note Do NOT call <waitUntilFinished> on this task from the main thread. It may result in a deadlock.
+
+ @returns A task that produces a *live* stream that is being written to with the data from the server.
  */
-- (void)getDataStreamInBackgroundWithBlock:(PFDataStreamResultBlock)block;
+- (BFTask *)getDataDownloadStreamInBackground;
 
 /*!
- Asynchronously gets the data from cache if available or fetches its contents 
- from the Parse servers. Executes the resultBlock upon
- completion or error. Executes the progressBlock periodically with the percent progress. progressBlock will get called with 100 before resultBlock is called.
- @param resultBlock The block should have the following argument signature: (NSData *result, NSError *error)
- @param progressBlock The block should have the following argument signature: (int percentDone)
+ @abstract This method is like <getDataInBackground> but avoids
+ ever holding the entire `PFFile` contents in memory at once.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+ @param progressBlock The block should have the following argument signature: ^(int percentDone)
+
+ @returns The task, that encapsulates the work being done.
  */
-- (void)getDataInBackgroundWithBlock:(PFDataResultBlock)resultBlock
-                       progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask *)getDataStreamInBackgroundWithProgressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
 
 /*!
- This method is like getDataInBackgroundWithBlock:progressBlock: but avoids ever
- holding the entire PFFile's contents in memory at once. This can help 
- applications with many large PFFiles avoid memory warnings.
- @param resultBlock The block should have the following argument signature: (NSInputStream *result, NSError *error)
- @param progressBlock The block should have the following argument signature: (int percentDone)
+ @abstract This method is like <getDataStreamInBackgroundWithProgrssBlock>, but yields a live-updating stream.
+
+ @discussion Instead of <getDataStream>, which yields a stream that can be read from only after the request has
+ completed, this method gives you a stream directly written to by the HTTP session. As this stream is not pre-buffered,
+ it is strongly advised to use the `NSStreamDelegate` methods, in combination with a run loop, to consume the data in
+ the stream, to do proper async file downloading.
+
+ @note You MUST open this stream before reading from it.
+ @note Do NOT call <waitUntilFinished> on this task from the main thread. It may result in a deadlock.
+
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`
+
+ @returns A task that produces a *live* stream that is being written to with the data from the server.
  */
-- (void)getDataStreamInBackgroundWithBlock:(PFDataStreamResultBlock)resultBlock
-                             progressBlock:(PFProgressBlock)progressBlock;
+- (BFTask *)getDataDownloadStreamInBackgroundWithProgressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
 
 /*!
- Asynchronously gets the data from cache if available or fetches its contents 
- from the Parse servers.
+ @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+
+ @param block The block should have the following argument signature: `^(NSData *result, NSError *error)`
+ */
+- (void)getDataInBackgroundWithBlock:(PF_NULLABLE PFDataResultBlock)block;
+
+/*!
+ @abstract This method is like <getDataInBackgroundWithBlock:> but avoids
+ ever holding the entire `PFFile` contents in memory at once.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+
+ @param block The block should have the following argument signature: `(NSInputStream *result, NSError *error)`
+ */
+- (void)getDataStreamInBackgroundWithBlock:(PF_NULLABLE PFDataStreamResultBlock)block;
+
+/*!
+ @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+
+ @discussion This method will execute the progressBlock periodically with the percent progress.
+ `progressBlock` will get called with `100` before `resultBlock` is called.
+
+ @param resultBlock The block should have the following argument signature: ^(NSData *result, NSError *error)
+ @param progressBlock The block should have the following argument signature: ^(int percentDone)
+ */
+- (void)getDataInBackgroundWithBlock:(PF_NULLABLE PFDataResultBlock)resultBlock
+                       progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+
+/*!
+ @abstract This method is like <getDataInBackgroundWithBlock:progressBlock:> but avoids
+ ever holding the entire `PFFile` contents in memory at once.
+
+ @discussion This can help applications with many large files avoid memory warnings.
+
+ @param resultBlock The block should have the following argument signature: `^(NSInputStream *result, NSError *error)`.
+ @param progressBlock The block should have the following argument signature: `^(int percentDone)`.
+ */
+- (void)getDataStreamInBackgroundWithBlock:(PF_NULLABLE PFDataStreamResultBlock)resultBlock
+                             progressBlock:(PF_NULLABLE PFProgressBlock)progressBlock;
+
+/*
+ @abstract *Asynchronously* gets the data from cache if available or fetches its contents from the network.
+
  @param target The object to call selector on.
- @param selector The selector to call. It should have the following signature: (void)callbackWithResult:(NSData *)result error:(NSError *)error. error will be nil on success and set if there was an error.
+ @param selector The selector to call.
+ It should have the following signature: `(void)callbackWithResult:(NSData *)result error:(NSError *)error`.
+ `error` will be `nil` on success and set if there was an error.
  */
-- (void)getDataInBackgroundWithTarget:(id)target selector:(SEL)selector;
+- (void)getDataInBackgroundWithTarget:(PF_NULLABLE_S id)target selector:(PF_NULLABLE_S SEL)selector;
 
-/** @name Interrupting a Transfer */
+///--------------------------------------
+/// @name Interrupting a Transfer
+///--------------------------------------
 
 /*!
- Cancels the current request (whether upload or download of file data).
+ @abstract Cancels the current request (upload or download of file).
  */
 - (void)cancel;
 
 @end
+
+PF_ASSUME_NONNULL_END

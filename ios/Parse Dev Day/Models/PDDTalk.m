@@ -14,8 +14,10 @@
 #import <Parse/PFObject+Subclass.h>
 
 @interface PDDTalk ()
+
 + (NSDateFormatter *)_dateFormatter;
 + (NSComparator)_orderByTimeThenRoomComparator;
+
 @end
 
 @implementation PDDTalk
@@ -28,8 +30,25 @@
 @dynamic room;
 @dynamic icon;
 
+
 + (NSString *)parseClassName {
     return @"Talk";
+}
+
++ (void)findByBeaconInBackgroundWithBlock:(PFArrayResultBlock)resultBlock {
+    
+    
+    
+    
+    PFQuery *query = [PDDTalk query];
+    [query includeKey:@"room"];
+    [query includeKey:@"slot"];
+    [query includeKey:@"speakers"];
+    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *talks, NSError *error) {
+        resultBlock([[self class] sortedTalkArray:talks], error);
+        
+    }];
 }
 
 + (void)findAllInBackgroundWithBlock:(PFArrayResultBlock)resultBlock {
@@ -42,6 +61,9 @@
         resultBlock([[self class] sortedTalkArray:talks], error);
     }];
 }
+
+
+
 
 + (void)findFavorites:(NSArray *)talkIds inBackgroundWithBlock:(PFArrayResultBlock)resultBlock {
     PFQuery *query = [PDDTalk query];
