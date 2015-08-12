@@ -9,6 +9,9 @@
 #import "IbeaconListViewController.h"
 
 #import "PTDBeanManager.h"
+#import "PTDBeanListViewController.h"
+#import "PTDBeanHeaderCell.h"
+#import "PTDBeanDetailController.h"
 
 #import "PDDListViewController.h"
 #import "PDDTalkCell.h"
@@ -33,10 +36,11 @@
 @property (strong, nonatomic) NSDictionary *dataBySection;
 @property (strong, nonatomic) NSArray *sortedSections;
 @property (nonatomic) PDDTalkSectionType currentSectionSort;
-
 @property (strong, nonatomic) NSMutableArray *checkedTalks;
+@property (strong, nonatomic) NSMutableArray *emptyTalks;
 @property (nonatomic) int flagOne;
 @property (nonatomic) int flagTwo;
+@property (strong, nonatomic) NSString *identifierOld;
 @property (strong, atomic) NSTimer *timer;
 @property (strong, nonatomic) NSMutableArray *beansArr;
 @property (strong, nonatomic) NSArray *sortedArray;
@@ -52,7 +56,7 @@
     if (self = [super init]) {
         self.title = @"Talks here";
         self.tabBarItem.image = [UIImage imageNamed:@"ibeacons"];
-        self.isViewed = NO;
+        _isViewed = NO;
     }
     return self;
 }
@@ -63,6 +67,7 @@
     self.checkedTalks = [NSMutableArray new];
     self.beansArr = [NSMutableArray array];
     NSLog(@"VIEW DID LOAD");
+    
 }
 
 - (void)checkAndScan {
@@ -84,24 +89,33 @@
     self.beans.removeAllObjects;
     self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
     self.beansArr.removeAllObjects;
+    
 }
 
 -(void)reset {
     self.checkedTalks.removeAllObjects;
     self.rawTalks = self.checkedTalks;
+    self.identifierOld = @"";
     self.beansArr.removeAllObjects;
+    
 }
 
 -(void)startScan {
+    NSLog(@"START SCAN");
     self.beans.removeAllObjects;
-    self.isViewed = NO;
+    _isViewed = NO;
+    NSLog(@"[self.beans count] %d", ([self.beans count] == 0));
+    NSLog(@"![self.searchingAlert isVisible] %d", (![self.searchingAlert isVisible]));
+    NSLog(@"[self.alert isVisible] %d", ![self.alert isVisible]);
+    NSLog(@"(self.beanManager.state == BeanManagerState_PoweredOn) %d", (self.beanManager.state == BeanManagerState_PoweredOn));
     if (([self.beans count] == 0) && ![self.searchingAlert isVisible] && ![self.alert isVisible] && (self.beanManager.state == BeanManagerState_PoweredOn)) {
-        NSLog(@"dsfsdf %d", (self.beanManager.state == BeanManagerState_PoweredOn));
-        self.searchingAlert = [[UIAlertView alloc] initWithTitle:@"Please wait" message:@"Searching your location.." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+        NSLog(@"START SCAN INNER IF");
+
+        self.searchingAlert = [[UIAlertView alloc] initWithTitle:@"Please wait" message:@"Searching your location.." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Cancel", nil ];
         [self.searchingAlert show];
         return;
     }
-    self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
+//    self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -114,12 +128,12 @@
 - (void)beanManagerDidUpdateState:(PTDBeanManager *)manager{
     if(self.beanManager.state == BeanManagerState_PoweredOn){
         [self.beanManager startScanningForBeans_error:nil];
-    } else if ((self.beanManager.state == BeanManagerState_PoweredOff) && (!self.isViewed) && ![self.alert isVisible]) {
+    } else if ((self.beanManager.state == BeanManagerState_PoweredOff) && (!_isViewed) && ![self.alert isVisible]) {
         self.alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Turn on bluetooth to continue" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [self.alert show];
         [self.timer invalidate];
-        self.isViewed = YES;
-        NSLog(@"isViewed %hhd", self.isViewed);
+        _isViewed = YES;
+        NSLog(@"isViewed %hhd", _isViewed);
         return;
     }
 }
@@ -131,6 +145,7 @@
     self.tableView = listView;
     self.view = listView;
     NSLog(@"LOAD VIEW");
+    self.beanManager = [[PTDBeanManager alloc] initWithDelegate:self];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(startScan)
                                                 name:UIApplicationDidBecomeActiveNotification
@@ -139,21 +154,24 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // the next vc grabs the delegate to receive callbacks
+    // when the view appears , we want to grab them back.
     NSLog(@"VIEW WILL APPEAR");
     [self startScan];
-    NSTimeInterval numberOfSeconds = 4;
+    NSTimeInterval numberOfSeconds = 3;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:numberOfSeconds
                                              target:self
                                            selector:@selector(checkAndScan)
                                            userInfo:nil
                                             repeats:YES];
-    
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reset];
     [self.timer invalidate];
+    // the next vc grabs the delegate to receive callbacks
+    // when the view appears , we want to grab them back.
     NSError *stopScanningError;
     [self.beanManager stopScanningForBeans_error:&stopScanningError];
     self.checkedTalks.removeAllObjects;
@@ -161,7 +179,7 @@
     [self.tableView reloadData];
     [self reorderTableViewSections];
     [self reset];
-    self.isViewed = NO;
+    _isViewed = NO;
     NSLog(@"VIEW WILL DISAPPEAR");
 }
 
@@ -170,18 +188,19 @@
     [self.beansArr addObject:bean];
     
     if (![self.beans objectForKey:key]) {
+        // New bean
         [self.beans setObject:bean forKey:key];
     }
-        self.sortedArray = [NSArray new];
-        self.sortedArray = [self.beansArr sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        int first = [[(PTDBean*)a RSSI] intValue];
-        int second = [[(PTDBean*)b RSSI] intValue];
-        return first < second;
+            self.sortedArray = [NSArray new];
+           self.sortedArray = [self.beansArr sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [[(PTDBean*)a RSSI] intValue];
+            int second = [[(PTDBean*)b RSSI] intValue];
+            return first < second;
         }];
     
-//    for (int i = 0; i < [self.sortedArray count]; i++) {
-//        NSLog(@"sorted array el %d", [[(PTDBean*)[self.sortedArray objectAtIndex:i] RSSI] intValue]);
-//    }
+    for (int i = 0; i < [self.sortedArray count]; i++) {
+        NSLog(@"sorted array el %d", [[(PTDBean*)[self.sortedArray objectAtIndex:i] RSSI] intValue]);
+    }
     
     [PDDTalk findByBeaconInBackgroundWithBlock:^(NSArray *talks, NSError *error) {
         
@@ -207,7 +226,7 @@
         [self.tableView reloadData];
         [self reorderTableViewSections];
         if ([self.searchingAlert isVisible] && [self.tableView numberOfSections] !=0) {
-            [self.searchingAlert dismissWithClickedButtonIndex:0 animated:YES];
+            [self.searchingAlert dismissWithClickedButtonIndex:1 animated:YES];
         }
     }];
     
@@ -249,6 +268,7 @@
     } else {
         [cell setTalk:[self talkForIndexPath:indexPath]];
     }
+    
     return cell;
 }
 
