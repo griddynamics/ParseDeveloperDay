@@ -65,10 +65,10 @@
         abstractLabel.numberOfLines = 0;
         [self addSubview:abstractLabel];
 
-        [favoriteButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[favoriteButton(37)]"
-                                                                               options:0
-                                                                               metrics:nil
-                                                                                 views:NSDictionaryOfVariableBindings(favoriteButton)]];
+//        [favoriteButton addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[favoriteButton(37)]"
+//                                                                               options:0
+//                                                                               metrics:nil
+//                                                                                 views:NSDictionaryOfVariableBindings(favoriteButton)]];
         [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[titleLabel]-(>=10)-[favoriteButton(37)]-|"
                                                                            options:NSLayoutFormatAlignAllCenterY
                                                                            metrics:nil

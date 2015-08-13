@@ -1,98 +1,103 @@
 //
 //  PFRole.h
-//  Parse
 //
-//  Created by David Poll on 5/17/12.
-//  Copyright (c) 2012 Parse Inc. All rights reserved.
+//  Copyright 2011-present Parse Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-#import "PFObject.h"
-#import "PFSubclassing.h"
+#if TARGET_OS_IPHONE
+#import <Parse/PFNullability.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFSubclassing.h>
+#else
+#import <ParseOSX/PFNullability.h>
+#import <ParseOSX/PFObject.h>
+#import <ParseOSX/PFSubclassing.h>
+#endif
+
+PF_ASSUME_NONNULL_BEGIN
 
 /*!
- Represents a Role on the Parse server. PFRoles represent groupings
- of PFUsers for the purposes of granting permissions (e.g. specifying a
- PFACL for a PFObject). Roles are specified by their sets of child users
- and child roles, all of which are granted any permissions that the
- parent role has.<br />
- <br />
- Roles must have a name (which cannot be changed after creation of the role),
- and must specify an ACL.
+ The `PFRole` class represents a Role on the Parse server.
+ `PFRoles` represent groupings of <PFUser> objects for the purposes of granting permissions
+ (e.g. specifying a <PFACL> for a <PFObject>).
+ Roles are specified by their sets of child users and child roles,
+ all of which are granted any permissions that the parent role has.
+
+ Roles must have a name (which cannot be changed after creation of the role), and must specify an ACL.
  */
 @interface PFRole : PFObject<PFSubclassing>
 
-#pragma mark Creating a New Role
-
-/** @name Creating a New Role */
+///--------------------------------------
+/// @name Creating a New Role
+///--------------------------------------
 
 /*!
- Constructs a new PFRole with the given name. If no default ACL has been
- specified, you must provide an ACL for the role.
- 
+ @abstract Constructs a new `PFRole` with the given name.
+ If no default ACL has been specified, you must provide an ACL for the role.
+
  @param name The name of the Role to create.
  */
-- (id)initWithName:(NSString *)name;
+- (instancetype)initWithName:(NSString *)name;
 
 /*!
- Constructs a new PFRole with the given name.
- 
+ @abstract Constructs a new `PFRole` with the given name.
+
  @param name The name of the Role to create.
  @param acl The ACL for this role. Roles must have an ACL.
  */
-- (id)initWithName:(NSString *)name acl:(PFACL *)acl;
+- (instancetype)initWithName:(NSString *)name acl:(PF_NULLABLE PFACL *)acl;
 
 /*!
- Constructs a new PFRole with the given name. If no default ACL has been
- specified, you must provide an ACL for the role.
- 
+ @abstract Constructs a new `PFRole` with the given name.
+
+ @discussion If no default ACL has been specified, you must provide an ACL for the role.
+
  @param name The name of the Role to create.
  */
 + (instancetype)roleWithName:(NSString *)name;
 
 /*!
- Constructs a new PFRole with the given name.
- 
+ @abstract Constructs a new `PFRole` with the given name.
+
  @param name The name of the Role to create.
  @param acl The ACL for this role. Roles must have an ACL.
  */
-+ (instancetype)roleWithName:(NSString *)name acl:(PFACL *)acl;
++ (instancetype)roleWithName:(NSString *)name acl:(PF_NULLABLE PFACL *)acl;
 
-#pragma mark -
-#pragma mark Role-specific Properties
-
-/** @name Role-specific Properties */
+///--------------------------------------
+/// @name Role-specific Properties
+///--------------------------------------
 
 /*!
- Gets or sets the name for a role. This value must be set before the role
- has been saved to the server, and cannot be set once the role has been
- saved.<br />
- <br />
- A role's name can only contain alphanumeric characters, _, -, and spaces.
+ @abstract Gets or sets the name for a role.
+
+ @discussion This value must be set before the role has been saved to the server,
+ and cannot be set once the role has been saved.
+
+ @warning A role's name can only contain alphanumeric characters, `_`, `-`, and spaces.
  */
 @property (nonatomic, copy) NSString *name;
 
 /*!
- Gets the PFRelation for the PFUsers that are direct children of this role.
- These users are granted any privileges that this role has been granted
+ @abstract Gets the <PFRelation> for the <PFUser> objects that are direct children of this role.
+
+ @discussion These users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove users from
  the role through this relation.
  */
-@property (nonatomic, readonly, retain) PFRelation *users;
+@property (nonatomic, strong, readonly) PFRelation *users;
 
 /*!
- Gets the PFRelation for the PFRoles that are direct children of this role.
- These roles' users are granted any privileges that this role has been granted
+ @abstract Gets the <PFRelation> for the `PFRole` objects that are direct children of this role.
+
+ @discussion These roles' users are granted any privileges that this role has been granted
  (e.g. read or write access through ACLs). You can add or remove child roles
  from this role through this relation.
  */
-@property (nonatomic, readonly, retain) PFRelation *roles;
-
-#pragma mark -
-#pragma mark Querying for Roles
-
-/** @name Querying for Roles */
-+ (PFQuery *)query;
+@property (nonatomic, strong, readonly) PFRelation *roles;
 
 @end
+
+PF_ASSUME_NONNULL_END

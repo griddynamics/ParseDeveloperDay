@@ -5,12 +5,14 @@
 //  Copyright (c) 2013 Parse. All rights reserved.
 //
 
+#import <ParseUI/ParseUI.h>
 #import "PDDTalkCell.h"
 #import "PDDRoom.h"
 #import "PDDSlot.h"
 #import "PDDSpeaker.h"
 #import "PDDFavoriteButton.h"
 #import "PDDPhotoView.h"
+
 
 #import "UIColor+ParseDevDay.h"
 #import "UILabel+ParseDevDay.h"
@@ -206,7 +208,7 @@
 
     if ([self.talk.speakers count] > 0) {
         PDDSpeaker *firstSpeaker = [self.talk.speakers objectAtIndex:0];
-        [self.photoImageView setFile:firstSpeaker.photo];
+        [self.photoImageView setFile: firstSpeaker.photo];
         [self.photoImageView loadInBackground];
     }
     self.favoriteButton.selected = [self.talk isFavorite];

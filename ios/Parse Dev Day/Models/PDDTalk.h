@@ -24,6 +24,7 @@ typedef enum {
 @property (strong, nonatomic) PDDRoom *room;
 @property (strong, nonatomic) PFFile *icon;
 
++ (void)findByBeaconInBackgroundWithBlock:(PFArrayResultBlock)resultBlock;
 + (void)findAllInBackgroundWithBlock:(PFArrayResultBlock)resultBlock;
 + (void)findFavorites:(NSArray *)talkIds inBackgroundWithBlock:(PFArrayResultBlock)resultBlock;
 + (NSArray *)sortedTalkArray:(NSArray *)talks;

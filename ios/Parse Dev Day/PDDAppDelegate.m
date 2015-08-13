@@ -37,9 +37,9 @@
     [PDDSpeaker registerSubclass];
     [PDDRoom registerSubclass];
     [PDDSlot registerSubclass];
-    [Parse setApplicationId:@"NN83LGZybDxGCxmGyA2b063eaYrLvCb2UUlJV7WB"
-                  clientKey:@"sOgFGHbUYc2CoQ50aLYJ9ayA79ExSPT6553tVA3h"];
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
+    [Parse setApplicationId:@"hSOvtKymudukuSdrlkqzKMcCna9JNgNUpQegnJBL"
+                  clientKey:@"I9pvaNaxCAMRMMTpSkM7MXd5WRLibZY5HokHmvUL"];
+//    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
