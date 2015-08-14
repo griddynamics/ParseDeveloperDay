@@ -2,7 +2,7 @@
 
 Here we proptotyped iBeacon integraion for the both iOS and Android conference apps. 
 
-see (iPhone demo recording)[https://drive.google.com/open?id=0B9ImxpTVsmE3UHltaWF6S3UtdTA]
+see [iPhone demo recording](https://drive.google.com/open?id=0B9ImxpTVsmE3UHltaWF6S3UtdTA)
 
 # original README #
 
