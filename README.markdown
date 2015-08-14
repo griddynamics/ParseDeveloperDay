@@ -1,6 +1,6 @@
 # Conference app prototype with InDoor Location #
 
-Here we proptotyped IBeacons integraion for the both iOS and Android conference apps. 
+Here we proptotyped iBeacon integraion for the both iOS and Android conference apps. 
 
 see (iPhone demo recording)[https://drive.google.com/open?id=0B9ImxpTVsmE3UHltaWF6S3UtdTA]
 
