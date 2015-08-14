@@ -1,4 +1,10 @@
-# Parse Developer Day app #
+# Conference app prototype with InDoor Location #
+
+Here we proptotyped IBeacons integraion for the both iOS and Android conference apps. 
+
+see (iPhone demo recording)[https://drive.google.com/open?id=0B9ImxpTVsmE3UHltaWF6S3UtdTA]
+
+# original README #
 
 This is the entire source code of the official [Parse Developer Day](http://www.parsedeveloperday.com) apps, available on the [App Store](https://itunes.apple.com/us/app/parse-developer-day/id691488056) as well as on [Google Play](https://play.google.com/store/apps/details?id=com.parse.parsedevday). 
 
